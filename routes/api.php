@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\BusController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\DriverController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource('buses', BusController::class);
+Route::apiResource('drivers', DriverController::class);
