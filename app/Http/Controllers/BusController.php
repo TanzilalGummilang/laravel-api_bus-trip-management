@@ -18,7 +18,7 @@ class BusController extends Controller
     {
         $buses = Bus::create($request->validated());
         return response()->json([
-            'message' => "New bus created successfully!",
+            'message' => "new bus created successfully!",
             'data' => $buses
         ]);
     }
@@ -32,7 +32,7 @@ class BusController extends Controller
     {
         $bus->update($request->validated());
         return response()->json([
-            'message' => "Bus updated successfully!",
+            'message' => "bus updated successfully!",
             'data' => $bus
         ]);
     }
@@ -40,6 +40,6 @@ class BusController extends Controller
     public function destroy(Bus $bus)
     {
         $bus->delete();
-        return response()->json(['message' => "Bus deleted successfully!"]);
+        return response()->json(['message' => "bus deleted successfully!"]);
     }
 }

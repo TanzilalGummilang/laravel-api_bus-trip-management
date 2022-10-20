@@ -18,7 +18,7 @@ class DriverController extends Controller
     {
         $driver = Driver::create($request->validated());
         return response()->json([
-            'message' => "New driver created successfully!",
+            'message' => "new driver created successfully!",
             'data' => $driver
         ]);
     }
@@ -32,7 +32,7 @@ class DriverController extends Controller
     {
         $driver->update($request->validated());
         return response()->json([
-            'message' => "Driver updated successfully!",
+            'message' => "driver updated successfully!",
             'data' => $driver
         ]);
     }
@@ -40,6 +40,6 @@ class DriverController extends Controller
     public function destroy(Driver $driver)
     {
         $driver->delete();
-        return response()->json(['message' => "Driver deleted successfully!"]);
+        return response()->json(['message' => "driver deleted successfully!"]);
     }
 }

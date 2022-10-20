@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Driver;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateDriverRequest extends FormRequest
@@ -23,6 +24,7 @@ class UpdateDriverRequest extends FormRequest
      */
     public function rules()
     {
+        $gender = implode(',', Driver::GENDER);
         $method = $this->method();
         if ($method == 'PATCH') {
             return [
@@ -30,7 +32,7 @@ class UpdateDriverRequest extends FormRequest
                 'name' => 'sometimes|required',
                 'phone' => 'sometimes',
                 'address' => 'sometimes',
-                'gender' => 'sometimes|required|in:Pria,Wanita'
+                'gender' => 'sometimes|required|in:'.$gender
             ];
         } else {
             return [
@@ -38,7 +40,7 @@ class UpdateDriverRequest extends FormRequest
                 'name' => 'required',
                 'phone' => '',
                 'address' => '',
-                'gender' => 'required|in:Pria,Wanita'
+                'gender' => 'required|in:'.$gender
             ];
         }
     }

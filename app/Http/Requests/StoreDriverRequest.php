@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Driver;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreDriverRequest extends FormRequest
@@ -23,12 +24,13 @@ class StoreDriverRequest extends FormRequest
      */
     public function rules()
     {
+        $gender = implode(',', Driver::GENDER);
         return [
             'registration_number' => 'required|unique:drivers',
             'name' => 'required',
             'phone' => '',
             'address' => '',
-            'gender' => 'required|in:Pria,Wanita',
+            'gender' => 'required|in:'.$gender
         ];
     }
 }
