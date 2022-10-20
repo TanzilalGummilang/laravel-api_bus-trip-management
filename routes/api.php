@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\TerminalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('buses', BusController::class);
 Route::apiResource('drivers', DriverController::class);
+Route::apiResource('terminals', TerminalController::class);
