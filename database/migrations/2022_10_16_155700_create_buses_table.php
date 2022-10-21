@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('buses', function (Blueprint $table) {
             $table->id();
-            $table->string('number_plate');
-            $table->string('serial_number');
+            $table->string('number_plate')->unique();
+            $table->string('serial_number')->unique();
             $table->string('distributor');
             $table->tinyInteger('number_of_seats', false, true);
             $table->timestamps();
