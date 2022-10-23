@@ -45,6 +45,15 @@ class TerminalSeeder extends Seeder
                 'sub_district' => "Kecamatan Ciputat",
                 'type' => "pool"
             ]);
+            Terminal::create([
+                'code' => "JKT-002",
+                'name' => "Pasar Rebo",
+                'address' => "jalan pasar rebo",
+                'province' => "DKI Jakarta",
+                'district' => "Jakarta Timur",
+                'sub_district' => "Kecamatan Pasar Rebo",
+                'type' => "checkpoint"
+            ]);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
