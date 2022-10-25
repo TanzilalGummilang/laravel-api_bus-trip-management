@@ -18,6 +18,8 @@ class RouteController extends Controller
 
     public function store(StoreRouteRequest $request)
     {
+        return $request;
+        return json_encode($request->bus_stop);
         try {
             DB::beginTransaction();
             $route = Route::create([
@@ -27,9 +29,9 @@ class RouteController extends Controller
                 'time_taken' => $request->time_taken,
                 'bus_stop' => json_encode($request->bus_stop)
             ]);
+            DB::commit();
 
             self::jsonBusStop($route);
-            DB::commit();
             return response()->json([
                 'message' => "new route created successfully!",
                 'data' => $route
@@ -52,25 +54,15 @@ class RouteController extends Controller
     {
         try {
             DB::beginTransaction();
-            $method = $request->method();
-            if ($method == 'PATCH') {
-                if($request->bus_stop) $route->update(['bus_stop' => json_encode($request->bus_stop)]);
-                if($request->code) $route->update(['code' => $request->code]);
-                if($request->origin) $route->update(['origin' => $request->origin]);
-                if($request->destination) $route->update(['destination' => $request->destination]);
-                if($request->time_taken) $route->update(['time_taken' => $request->time_taken]);
-            } else {
-                $route->update([
-                    'code' => $request->code,
-                    'origin' => $request->origin,
-                    'destination' => $request->destination,
-                    'time_taken' => $request->time_taken,
-                    'bus_stop' => json_encode($request->bus_stop)
-                ]);
-            }
+            if ($request->bus_stop) $route->bus_stop = json_encode($request->bus_stop);
+            if ($request->code) $route->code = $request->code;
+            if ($request->origin) $route->origin = $request->origin;
+            if ($request->destination) $route->destination = $request->destination;
+            if ($request->time_taken) $route->time_taken = $request->time_taken;
+            $route->update();
+            DB::commit();
 
             self::jsonBusStop($route);
-            DB::commit();
             return response()->json([
                 'message' => "route updated successfully!",
                 'data' => $route
@@ -87,7 +79,7 @@ class RouteController extends Controller
             DB::beginTransaction();
             $route->delete();
             DB::commit();
-            return response()->json(['message' => "route delete successfully!"]);
+            return response()->json(['message' => "route deleted successfully!"]);
         } catch (\Throwable $th) {
             DB::rollBack();
             // throw $th;

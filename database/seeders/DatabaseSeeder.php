@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             BusSeeder::class,
             DriverSeeder::class,
             TerminalSeeder::class,
+            RouteSeeder::class,
         ]);
     }
 }
