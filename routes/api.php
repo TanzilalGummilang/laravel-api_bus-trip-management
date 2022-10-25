@@ -3,6 +3,7 @@
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\RouteController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TerminalController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,4 @@ Route::apiResource('buses', BusController::class);
 Route::apiResource('drivers', DriverController::class);
 Route::apiResource('terminals', TerminalController::class);
 Route::apiResource('routes', RouteController::class);
+Route::apiResource('schedules', ScheduleController::class);

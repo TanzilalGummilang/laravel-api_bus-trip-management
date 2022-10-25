@@ -9,4 +9,9 @@ class Bus extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function schedule()
+    {
+        return $this->hasOne(Schedule::class);
+    }
 }
